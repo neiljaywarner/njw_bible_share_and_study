@@ -135,6 +135,8 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            TextView textViewVerses = (TextView) rootView.findViewById(R.id.section_label);
+            textViewVerses.setText(getSectionLabel());
             return rootView;
         }
 
@@ -144,6 +146,15 @@ public class MainActivity extends ActionBarActivity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+
+        private String getSectionLabel() {
+            int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+
+            return getResources().getStringArray(R.array.section_labels)[sectionNumber-1];
+
+        }
     }
+
+
 
 }

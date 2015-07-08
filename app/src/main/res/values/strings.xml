@@ -1,9 +1,20 @@
 <resources>
     <string name="app_name">Bible Share and Study</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Seeking God</string>
+    <string name="title_section2">Word</string>
+    <string name="title_section3">Discipleship</string>
+
+    <array name="section_labels">
+        <item>Seeking God</item>
+        <item>Word</item>
+        <item>Discipleship</item>
+
+
+
+    </array>
+
+    <!-- TODO: verses as string arrays, then switch to json at least for refs -->
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
