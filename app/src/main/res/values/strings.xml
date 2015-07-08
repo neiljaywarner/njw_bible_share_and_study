@@ -14,6 +14,55 @@
 
     </array>
 
+    <array name="study_1_verses"> <!-- Seeking God -->
+        <item>Jeremiah 29:11-13 We will find God when we seek Him with all of our hearts.
+        </item>
+        <item>Matthew 7:7-11 Persistence is necessary in finding God.
+        </item>
+        <item>Matthew 6:25-34 Worrying can distract us from finding God.
+        </item>
+        <item>Acts 17:22-31 God made everything and everyone for the purpose of finding Him.
+        </item>
+    </array>
+
+    <array name="study_2_verses">
+
+        <item>2 Timothy 3:16-17 Usefulness of the Word
+        </item>
+        <item>Hebrews 4:12-13 Relevance of the Word
+        </item>
+        <item>2 Peter 1:20-21 Inspiration of the Word
+        </item>
+        <item>Matthew 15:1-9 Traditions vs. the Word
+        </item>
+        <item>James 1:19-25 Obedience to the Word
+        </item>
+        <item>1 Timothy 4:16 Salvation through the Word
+        </item>
+        <item>John 12:47-48 Judgment by the Word
+        </item>
+    </array>
+
+    <array name="study_3_verses">
+
+        <item>Acts 11:19-26
+        </item>
+        <item>Mark 1:14-18 Beginning of Discipleship
+        </item>
+        <item>Luke 9:23-26 Challenge of Discipleship
+        </item>
+        <item>Luke 14:25-35 Cost of Discipleship
+        </item>
+        <item>John 8:31-32 Standard of Discipleship
+        </item>
+        <item>John 13:34-35 Relationships of Discipleship
+        </item>
+        <item>John 15:5-8 Fruit of Discipleship
+        </item>
+        <item>Matthew 28:18-20 Commission of Discipleship
+        </item>
+    </array>
+
     <!-- TODO: verses as string arrays, then switch to json at least for refs -->
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

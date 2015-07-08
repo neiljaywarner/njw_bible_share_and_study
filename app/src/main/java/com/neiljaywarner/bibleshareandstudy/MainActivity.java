@@ -136,8 +136,38 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textViewVerses = (TextView) rootView.findViewById(R.id.section_label);
-            textViewVerses.setText(getSectionLabel());
+            int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+
+            String referencesString = getReferencesString(sectionNumber);
+            textViewVerses.setText(getSectionLabel() + "\n\n" +referencesString);
             return rootView;
+        }
+
+        private String getReferencesString(int sectionNumber) {
+            String[] referencesArray;
+            //TODO: Refactor into hashmaps/json etc, this is prototyping.
+            switch (sectionNumber - 1) {
+                case 0:
+                    referencesArray = getResources().getStringArray(R.array.study_1_verses);
+                    break;
+                case 1:
+                    referencesArray = getResources().getStringArray(R.array.study_2_verses);
+                    break;
+
+                case 2:
+                    referencesArray = getResources().getStringArray(R.array.study_3_verses);
+                    break;
+                default:
+                    referencesArray = getResources().getStringArray(R.array.study_1_verses);
+                    break;
+
+
+            }
+            String references = "";
+            for (String reference : referencesArray) {
+                references += "\n" + reference;
+            }
+            return references;
         }
 
         @Override
@@ -153,6 +183,7 @@ public class MainActivity extends ActionBarActivity
             return getResources().getStringArray(R.array.section_labels)[sectionNumber-1];
 
         }
+        //TODO: Separate fragment.
     }
 
 
