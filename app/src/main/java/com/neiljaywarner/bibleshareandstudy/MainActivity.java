@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -139,7 +140,7 @@ public class MainActivity extends ActionBarActivity
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
             String referencesString = getReferencesString(sectionNumber);
-            textViewVerses.setText(getSectionLabel() + "\n\n" +referencesString);
+            textViewVerses.setText(referencesString);
             return rootView;
         }
 
@@ -165,7 +166,7 @@ public class MainActivity extends ActionBarActivity
             }
             String references = "";
             for (String reference : referencesArray) {
-                references += "\n" + reference;
+                references += "\n\n" + reference;
             }
             return references;
         }
