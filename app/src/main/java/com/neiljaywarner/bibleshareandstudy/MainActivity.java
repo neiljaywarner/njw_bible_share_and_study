@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,15 +18,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
+    //TODO: OPen drawer on first app open (with shared preferences)
 
-
-    private CharSequence mTitle;
 
     private DrawerLayout mDrawerLayout;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //  final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //  setSupportActionBar(toolbar);
         //TODO: Use later for material design goodness.
-        final ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
 
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
@@ -46,32 +43,27 @@ public class MainActivity extends AppCompatActivity {
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                // Snackbar.make(content, menuItem.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
                 Snackbar.make(view, menuItem.getTitle(), Snackbar.LENGTH_LONG).show();
+                actionBar.setTitle(menuItem.getTitle());
+                showSection(menuItem.getOrder());
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
                 return true;
             }
         });
 
+        showSection(0); //show first section/study/
+
 
     }
 
-
-/*
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
+    private void showSection(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
     }
-    */
-
-
-
-
 
 
     @Override
@@ -154,13 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        private String getSectionLabel() {
-            int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
-            return getResources().getStringArray(R.array.section_labels)[sectionNumber-1];
-
-        }
-        //TODO: Separate fragment.
     }
 
 
