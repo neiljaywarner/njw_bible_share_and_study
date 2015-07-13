@@ -26,6 +26,23 @@
         </item>
     </array>
 
+    <array name="study_1_refs"> <!-- Seeking God -->
+        <item>Jer 29:11-13
+        </item>
+        <item>
+            <b>Matthew 7:7-11</b>
+            \nPersistence is necessary in finding God.
+        </item>
+        <item>
+            <b>Matthew 6:25-34</b>
+            \nWorrying can distract us from finding God.
+        </item>
+        <item>
+            <b>Acts 17:22-31</b>
+            \nGod made everything and everyone for the purpose of finding Him.
+        </item>
+    </array>
+
     <array name="study_2_verses">
 
         <item>2 Timothy 3:16-17 Usefulness of the Word
@@ -72,4 +89,5 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
+    <string name="menu_share">Share</string>
 </resources>

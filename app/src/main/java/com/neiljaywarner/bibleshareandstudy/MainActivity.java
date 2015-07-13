@@ -1,15 +1,21 @@
 package com.neiljaywarner.bibleshareandstudy;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,8 +69,18 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
-    }
 
+
+    }
+    /*
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu resource
+        getMenuInflater().inflate(R.menu.main, menu);
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -89,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-
+        private int mSectionNumber;
+        private String mReferencesString;
         public PlaceholderFragment() {
         }
 
@@ -106,15 +123,44 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mSectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+            mReferencesString = getReferencesString(mSectionNumber);
+            setHasOptionsMenu(true);
+        }
+
+        @Override
+        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+            inflater.inflate(R.menu.main, menu);
+
+            // Retrieve the share menu item
+            MenuItem shareItem = menu.findItem(R.id.menu_share);
+
+            // Now get the ShareActionProvider from the item
+            ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
+
+            shareActionProvider.setShareIntent(getShareIntent(this.getActivity(), getShareText()));
+
+            super.onCreateOptionsMenu(menu, inflater);
+        }
+
+
+        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textViewVerses = (TextView) rootView.findViewById(R.id.section_label);
-            int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
-            String referencesString = getReferencesString(sectionNumber);
-            textViewVerses.setText(referencesString);
+            textViewVerses.setText(mReferencesString);
             return rootView;
+        }
+
+        /**
+         * @return The text to include in the share intent.
+         */
+        public String getShareText() {
+            return mReferencesString.trim();
         }
 
         private String getReferencesString(int sectionNumber) {
@@ -144,11 +190,26 @@ public class MainActivity extends AppCompatActivity {
             return references;
         }
 
+        //for first study https://www.biblegateway.com/passage/?search=Jer%2029:11-13;Matt%207:7-11;Matt%206:25-34;Acts%2017:22-31&interface=print
 
+
+        /**
+         * Returns an {@link android.content.Intent} which can be used to share this item's content with other
+         * applications.
+         *
+         * @param context - Context to be used for fetching resources if needed
+         * @return Intent to be given to a ShareActionProvider.
+         */
+        public Intent getShareIntent(Context context, String text) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            // Get the string resource and bundle it as an intent extra
+            intent.putExtra(Intent.EXTRA_TEXT, text);
+            return intent;
+        }
 
 
     }
-
 
 
 }
