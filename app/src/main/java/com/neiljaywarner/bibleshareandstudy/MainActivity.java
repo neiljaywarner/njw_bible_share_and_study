@@ -117,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
     public String loadTextFromAsset(String assetName) {
         StringBuilder buf = new StringBuilder();
         BufferedReader in = null;
-        try (InputStream json = getAssets().open(assetName)) {
+        try {
+            InputStream json = getAssets().open(assetName);
             in = new BufferedReader(new InputStreamReader(json, "UTF-8"));
             String str;
 

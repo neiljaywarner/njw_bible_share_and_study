@@ -32,14 +32,15 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testStartingTitle_isSeekinGod() {
-        final String expected = "SeekingGod";
+        final String expected = "Seeking God";
         //todo; use string as test_string from strings.xml
 
         String startingTitle = mMainActivity.getActionBar().getTitle().toString();
         //getTitle is null until you wait.
 
         //  assertEquals(expected, startingTitle);
-        assertEquals("WrongValue", startingTitle);
+        openNavDrawerPickFirst();
+        assertEquals(expected, startingTitle);
 
     }
 
@@ -61,12 +62,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
     //this test should fail.
 
-    public void testOpenNavDrawer() {
+
+    private void openNavDrawerPickFirst() {
         mSolo.clickOnImageButton(0);
         mSolo.sendKey(KeyEvent.KEYCODE_DPAD_DOWN);
         mSolo.sendKey(KeyEvent.KEYCODE_DPAD_CENTER);
-        // open menu
-        // solo.sendKey(KeyEvent.KEYCODE_DPAD_DOWN); // select first item solo.sendKey(KeyEvent.KEYCODE_DPAD_CENTER); // press the first item
     }
 
     public void testLoadFromAsset() {
