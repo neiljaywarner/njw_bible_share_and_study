@@ -1,15 +1,17 @@
 package com.neiljaywarner.bibleshareandstudy;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.KeyEvent;
 
+import com.robotium.solo.Solo;
 
 /**
  * Created by nwarner on 7/13/15.
  */
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
+    public Solo mSolo;
     private MainActivity mMainActivity;
-
     public MainActivityTest() {
         super(MainActivity.class);
     }
@@ -18,7 +20,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     protected void setUp() throws Exception {
         super.setUp();
         mMainActivity = getActivity();
+        mSolo = new Solo(getInstrumentation(), getActivity());
+    }
 
+    public void tearDown() throws Exception {
+        mSolo.finishOpenedActivities();
     }
 
     public void testPreConditions() {
@@ -34,6 +40,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
         //  assertEquals(expected, startingTitle);
         assertEquals("WrongValue", startingTitle);
+
     }
 
 
@@ -54,5 +61,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
     //this test should fail.
 
-
+    public void testOpenNavDrawer() {
+        mSolo.clickOnImageButton(0);
+        mSolo.sendKey(KeyEvent.KEYCODE_DPAD_DOWN);
+        mSolo.sendKey(KeyEvent.KEYCODE_DPAD_CENTER);
+        // open menu
+        // solo.sendKey(KeyEvent.KEYCODE_DPAD_DOWN); // select first item solo.sendKey(KeyEvent.KEYCODE_DPAD_CENTER); // press the first item
+    }
 }
