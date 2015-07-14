@@ -21,6 +21,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -107,6 +112,25 @@ public class MainActivity extends AppCompatActivity {
         //user short code with 50 votes
         //TODO: can put verses in assets directory for good UX with speed and usable in airplane mode/spotty connection.
         return "dummyFileText";
+    }
+
+    public String loadTextFromAsset(String assetName) {
+        StringBuilder buf = new StringBuilder();
+        BufferedReader in = null;
+        try (InputStream json = getAssets().open(assetName)) {
+            in = new BufferedReader(new InputStreamReader(json, "UTF-8"));
+            String str;
+
+            while ((str = in.readLine()) != null) {
+                buf.append(str);
+            }
+
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return buf.toString();
     }
 
     /**

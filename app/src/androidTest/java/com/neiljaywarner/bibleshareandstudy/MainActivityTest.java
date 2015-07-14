@@ -68,4 +68,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         // open menu
         // solo.sendKey(KeyEvent.KEYCODE_DPAD_DOWN); // select first item solo.sendKey(KeyEvent.KEYCODE_DPAD_CENTER); // press the first item
     }
+
+    public void testLoadFromAsset() {
+        // String expected = "dummyText"; //accurate
+        String expected = "FailTestFrist";
+        String actual = mMainActivity.loadTextFromAsset("test.txt");
+        assertEquals(expected, actual);
+    }
 }
