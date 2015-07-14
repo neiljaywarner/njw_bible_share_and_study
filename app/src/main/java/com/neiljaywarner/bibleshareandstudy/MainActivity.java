@@ -97,6 +97,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
+     * @param filePath - eg Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), which would require external storage permission
+     *                 or local files like assets directory
+     * @return
+     */
+    public String loadTextFromFile(String filePath) {
+        //stub
+        //  http://stackoverflow.com/questions/16110002/read-assets-file-as-string
+        //user short code with 50 votes
+        //TODO: can put verses in assets directory for good UX with speed and usable in airplane mode/spotty connection.
+        return "dummyFileText";
+    }
+
+    /**
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
