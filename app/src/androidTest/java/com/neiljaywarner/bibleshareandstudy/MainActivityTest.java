@@ -70,8 +70,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testLoadFromAsset() {
-        // String expected = "dummyText"; //accurate
-        String expected = "FailTestFrist";
+        String expected = "dummyText"; //accurate
         String actual = mMainActivity.loadTextFromAsset("test.txt");
         assertEquals(expected, actual);
     }
